@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrucksTable extends Migration
+class CreatePositionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTrucksTable extends Migration
     public function up()
     {
         //
-        Schema::create('trucks', function(Blueprint $table){
+        Schema::create('positions', function(Blueprint $table){
             $table->increments('id');
 
-            $table->integer('number')->unsigned()->unique();
+            $table->string('latitude');
+            $table->string('longitude');
 
             $table->timestamps();
         });
@@ -30,6 +31,6 @@ class CreateTrucksTable extends Migration
     public function down()
     {
         //
-        Schema::drop('trucks');
+        Schema::drop('positions');
     }
 }
