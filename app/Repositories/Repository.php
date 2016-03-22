@@ -17,7 +17,18 @@ class Repository {
 
 	public function getAll(){
 		$collection = $this->model->get();
-		
+
 		return $this->formater->format_collection($collection);
+	}
+
+	public function update($fields){
+		$item = $this->model->find($fields['id']);
+		unset($fields['id']);
+		$position = $item->position;
+		foreach ($fields as $key => $value) {
+			$position->$key = $value;
+		}
+
+		$position->save();
 	}
 }
