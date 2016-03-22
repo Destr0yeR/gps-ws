@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use App\Services\Filterer;
 use App\Services\Formater;
 
 class Repository {
 
-	public function __construct(Model $model,
+	public function __construct(Builder $model,
 								Formater $formater){
 
 		$this->model = $model;
@@ -16,7 +16,8 @@ class Repository {
 	}
 
 	public function getAll(){
-		$collection = $this->model->all();
+		$collection = $this->model->get();
+		
 		return $this->formater->format_collection($collection);
 	}
 }

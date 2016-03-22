@@ -11,7 +11,7 @@ class TruckFormater extends Formater{
 		$fields = [
 			[
 				'format' 	=> 'id',
-				'value'		=> 'code',
+				'value'		=> 'id',
 			],
 			[
 				'format'	=> 'code',
@@ -30,7 +30,7 @@ class TruckFormater extends Formater{
 		$_item['position'] = [
 			'longitude'	=> $position->longitude,
 			'latitude'	=> $position->latitude
-		]
+		];
 
 		return $_item;
 	}

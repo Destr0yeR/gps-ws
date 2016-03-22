@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 class Formater {
 
@@ -10,21 +10,21 @@ class Formater {
 		$this->fields = $fields;
 	}
 
-	public function format_collection(Model $collection){
+	public function format_collection(Collection $collection){
 		$items = [];
 
 		foreach ($collection as $item) {
 			$items[] = $this->format_item($item);
 		}
 
-		return $item;
+		return $items;
 	}
 
 	public function format_item($item){
 		$_item = [];
 
-		foreach ($fields as $field) {
-			$_item[($field['format'])] = $item->($field['value']);
+		foreach ($this->fields as $field) {
+			$_item[$field['format']] = $item->$field['value'];
 		}
 
 		return $_item;
