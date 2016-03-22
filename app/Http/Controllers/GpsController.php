@@ -11,9 +11,11 @@ class GpsController extends Controller
     //
     public function getLocations(){
     	
+
+    	return response()->json(['trucks' => $trucks]);
     }
 
     public function updateLocations(Request $request){
-    	
+
     }
 }
