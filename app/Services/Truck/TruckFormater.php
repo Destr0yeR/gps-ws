@@ -27,7 +27,7 @@ class TruckFormater extends Formater{
 
 		$position = $item->position;
 
-		if($item){
+		if($position){
 			$_item['position'] = [
 				'longitude'	=> $position->longitude,
 				'latitude'	=> $position->latitude
