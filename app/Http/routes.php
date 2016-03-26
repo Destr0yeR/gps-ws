@@ -32,6 +32,6 @@ Route::group(['middleware' => ['web']], function () {
 
 
 Route::group(['middleware' => ['api']], function(){
-	Route::get('/', ['uses' => 'GpsController@getLocations', 'as' => 'get.locations']);
-	Route::post('/', ['uses' => 'GpsController@updateLocations', 'as' => 'update.locations']);
+	Route::get('/location', ['uses' => 'GpsController@getLocations', 'as' => 'get.locations']);
+	Route::post('/location', ['uses' => 'GpsController@updateLocations', 'as' => 'update.locations']);
 });
