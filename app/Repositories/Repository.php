@@ -15,10 +15,18 @@ class Repository {
 		$this->formater = $formater;
 	}
 
+	public function exists($id){
+		return ($model->find($id)==null?false:true);
+	}
+
 	public function getAll(){
 		$collection = $this->model->get();
 
 		return $this->formater->format_collection($collection);
+	}
+
+	public function updateOrCreate($check, $change){
+		$item = $this->model->updateOrCreate($check, $change);
 	}
 
 	public function update($fields){

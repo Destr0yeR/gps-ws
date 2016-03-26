@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Repositories\TruckRepository;
+use App\Repositories\PositionRepository;
 use App\Http\Requests\UpdateLocationRequest;
 
 class GpsController extends Controller
 {
     //
-	public function __construct(TruckRepository $truckRepository){
-		$this->repository = $truckRepository;
+	public function __construct(TruckRepository $truckRepository, PositionRepository $positionRepository){
+        $this->repository = $truckRepository;
+		$this->prepository = $positionRepository;
 	}
 
     public function getLocations(){
@@ -23,13 +25,18 @@ class GpsController extends Controller
     }
 
     public function updateLocations(UpdateLocationRequest $request){
-    	$input = [
-    		'id'		=> $request->input('id'),
+
+        $check = [
+            'truck_id'        => $request->input('id')
+        ];
+
+    	$change = [
+            'truck_id'        => $request->input('id'),
     		'latitude'	=> $request->input('latitude'),
     		'longitude'	=> $request->input('longitude')
     	];
 
-    	$success = $this->repository->update($input);
+    	$success = $this->prepository->updateOrCreate($check, $change);
 
     	return response()->json(['message' => 'OK']);
     }
